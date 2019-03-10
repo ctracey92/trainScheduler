@@ -42,10 +42,15 @@
           var trainNameTD = $("<td>").attr("scope", "col").text(trainName);
           var destinationTD = $("<td>").attr("scope", "col").text(destination);
           var firstTrainTimeTD = $("<td>").attr("scope", "col").text(firstTrainTime);
-          var monthsWorkedTD = $("<td>").attr("scope", "col").text(monthsDif) ;
-          var frequencyTD = $("<td>").attr("scope", "col").text("$" + frequency);
+          var frequencyTD = $("<td>").attr("scope", "col").text(frequency + " min");
           var paidTD = $("<td>").attr("scope", "col").text("$" + paidTotal);
-          (rows).append(trainNameTD, destinationTD, firstTrainTimeTD, monthsWorkedTD, frequencyTD, paidTD);
+
+
+          var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+          console.log(firstTimeConverted);
+
+
+          (rows).append(trainNameTD, destinationTD, frequencyTD, firstTrainTimeTD, paidTD);
         
         $("#trains").append(rows);
       }
