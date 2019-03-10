@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Employee Data Management</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">Employee Data Management</h1>
+                </div>
+              </div>
+    </div>
+
+
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Train Name</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Next Arrival</th>
+                <th scope="col">Mintues Away</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tbody id="trains">
+
+            </tbody>
+          
+        </table>        
+    </div>
+
+<div class="container">
+    <form>
+        <div class="form-group">
+          <label for="name">Train Name</label>
+          <input type="name" class="form-control" id="trainName" aria-describedby="trainName" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="Role">Destination</label>
+          <input type="destination" class="form-control" id="destination" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="first Train Time">First Train Time (HH:mm)</label>
+            <input type="first Train Time" class="form-control" id="first Train Time" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="frequency">Frequency (min) </label>
+            <input type="frequency" class="form-control" id="frequency" placeholder="">
+          </div>
+        <button type="submit" id="submitBttn" class="btn btn-primary">Submit</button>
+      </form>    
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+<script src="logic.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+</body>
+</html>
