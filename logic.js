@@ -1,19 +1,19 @@
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCUS5MnEfF_dS1Tb7yL1dFjPz7rg75cdkg",
-    authDomain: "trainscheduler-bdac6.firebaseapp.com",
-    databaseURL: "https://trainscheduler-bdac6.firebaseio.com",
-    projectId: "trainscheduler-bdac6",
-    storageBucket: "trainscheduler-bdac6.appspot.com",
-    messagingSenderId: "311208951291"
-  };
-  firebase.initializeApp(config);
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyCUS5MnEfF_dS1Tb7yL1dFjPz7rg75cdkg",
+  authDomain: "trainscheduler-bdac6.firebaseapp.com",
+  databaseURL: "https://trainscheduler-bdac6.firebaseio.com",
+  projectId: "trainscheduler-bdac6",
+  storageBucket: "trainscheduler-bdac6.appspot.com",
+  messagingSenderId: "311208951291"
+};
+firebase.initializeApp(config);
   
-    var database = firebase.database();
-    var trainName;
-    var destination;
-    var firstTrain;
-    var frequency;
+  var database = firebase.database();
+  var trainName;
+  var destination;
+  var firstTrain;
+  var frequency;
   
     database.ref().on("child_added", function(snapshot){
       
@@ -41,9 +41,7 @@
 
       var nextTrain = moment().add(tMinutesTillTrain, "minutes");
       var nextTrain = (moment(nextTrain).format("HH:mm"));
-  
-  
-  
+
       function addRow(){
           var rows =  $("<tr>");
            
@@ -68,21 +66,17 @@
       console.log ("error")
     }
   
-  $("#submitBttn").on("click", function(){
-      var trainName = $("#trainName").val().trim();
-      console.log(trainName);
-      var destination = $("#destination").val().trim();
-      var firstTrainTime = $("#firstTrainTime").val().trim();
-      var frequency= $("#frequency").val().trim();
-  
-       
-      database.ref().push({
-          trainName: trainName,
-          destination: destination,
-          firstTrainTime: firstTrainTime,
-          frequency: frequency,
-          dateAdded: firebase.database.ServerValue.TIMESTAMP
-        });
-  })
-  
-  
+$("#submitBttn").on("click", function(){
+    var trainName = $("#trainName").val().trim();
+    var destination = $("#destination").val().trim();
+    var firstTrainTime = $("#firstTrainTime").val().trim();
+    var frequency= $("#frequency").val().trim();
+    
+database.ref().push({
+  trainName: trainName,
+  destination: destination,
+  firstTrainTime: firstTrainTime,
+  frequency: frequency,
+  dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+})
