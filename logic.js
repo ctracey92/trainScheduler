@@ -1,4 +1,5 @@
-var config = {
+  // Initialize Firebase
+  var config = {
     apiKey: "AIzaSyCUS5MnEfF_dS1Tb7yL1dFjPz7rg75cdkg",
     authDomain: "trainscheduler-bdac6.firebaseapp.com",
     databaseURL: "https://trainscheduler-bdac6.firebaseio.com",
@@ -19,40 +20,40 @@ var config = {
     database.ref().on("child_added", function(snapshot){
       
       console.log(snapshot);
-      name = snapshot.val().name;
-      role = snapshot.val().role;
-      startDate = snapshot.val().startDate;
-      monthlyRate = snapshot.val().monthlyRate;
+      trainName = snapshot.val().trainName;
+      destination = snapshot.val().destination;
+      firstTrainTime = snapshot.val().firstTrainTime;
+      frequency = snapshot.val().frequency;
   
       var randomFormat = "MM/DD/YYYY";
-      var convertedDate = moment(startDate, randomFormat);
+      var convertedDate = moment(firstTrainTime, randomFormat);
   
       console.log(convertedDate.toNow());
       var monthsDif = convertedDate.diff(moment(), "months");
       var monthsDif = monthsDif * -1;
       
-      var paidTotal = monthsDif * monthlyRate;
+      var paidTotal = monthsDif * frequency;
   
   
   
       function addRow(){
           var rows =  $("<tr>");
            
-          var nameTD = $("<td>").attr("scope", "col").text(name);
-          var roleTD = $("<td>").attr("scope", "col").text(role);
-          var startDateTD = $("<td>").attr("scope", "col").text(startDate);
+          var trainNameTD = $("<td>").attr("scope", "col").text(trainName);
+          var destinationTD = $("<td>").attr("scope", "col").text(destination);
+          var firstTrainTimeTD = $("<td>").attr("scope", "col").text(firstTrainTime);
           var monthsWorkedTD = $("<td>").attr("scope", "col").text(monthsDif) ;
-          var monthlyRateTD = $("<td>").attr("scope", "col").text("$" + monthlyRate);
+          var frequencyTD = $("<td>").attr("scope", "col").text("$" + frequency);
           var paidTD = $("<td>").attr("scope", "col").text("$" + paidTotal);
-          (rows).append(nameTD, roleTD, startDateTD, monthsWorkedTD, monthlyRateTD, paidTD);
+          (rows).append(trainNameTD, destinationTD, firstTrainTimeTD, monthsWorkedTD, frequencyTD, paidTD);
         
-        $("#edm").append(rows);
+        $("#trains").append(rows);
       }
   
-      console.log(name);
-      console.log(role);
-      console.log(startDate);
-      console.log(monthlyRate);
+      console.log(trainName);
+      console.log(destination);
+      console.log(firstTrainTime);
+      console.log(frequency);
       
       addRow();
   
@@ -61,18 +62,18 @@ var config = {
     }
   
   $("#submitBttn").on("click", function(){
-      var name = $("#name").val().trim();
-      console.log(name);
-      var role = $("#role").val().trim();
-      var startDate = $("#start-date").val().trim();
-      var monthlyRate= $("#monthly-rate").val().trim();
+      var trainName = $("#trainName").val().trim();
+      console.log(trainName);
+      var destination = $("#destination").val().trim();
+      var firstTrainTime = $("#firstTrainTime").val().trim();
+      var frequency= $("#frequency").val().trim();
   
        
       database.ref().push({
-          name: name,
-          role: role,
-          startDate: startDate,
-          monthlyRate: monthlyRate,
+          trainName: trainName,
+          destination: destination,
+          firstTrainTime: firstTrainTime,
+          frequency: frequency,
           dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
   })
