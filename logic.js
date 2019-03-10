@@ -14,8 +14,6 @@
     var destination;
     var firstTrain;
     var frequency;
-    
-  
   
     database.ref().on("child_added", function(snapshot){
       
@@ -29,10 +27,20 @@
       var convertedDate = moment(firstTrainTime, randomFormat);
   
       console.log(convertedDate.toNow());
-      var monthsDif = convertedDate.diff(moment(), "months");
-      var monthsDif = monthsDif * -1;
+
+      var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
       
-      var paidTotal = monthsDif * frequency;
+      var currentTime = moment();
+      console.log(currentTime);
+      
+      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+      
+      var tRemainder = diffTime % frequency;
+
+      var tMinutesTillTrain = frequency - tRemainder;
+
+      var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+      var nextTrain = (moment(nextTrain).format("HH:mm"));
   
   
   
@@ -41,16 +49,10 @@
            
           var trainNameTD = $("<td>").attr("scope", "col").text(trainName);
           var destinationTD = $("<td>").attr("scope", "col").text(destination);
-          var firstTrainTimeTD = $("<td>").attr("scope", "col").text(firstTrainTime);
+          var nextTrainTD = $("<td>").attr("scope", "col").text(nextTrain);
           var frequencyTD = $("<td>").attr("scope", "col").text(frequency + " min");
-          var paidTD = $("<td>").attr("scope", "col").text("$" + paidTotal);
-
-
-          var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-          console.log(firstTimeConverted);
-
-
-          (rows).append(trainNameTD, destinationTD, frequencyTD, firstTrainTimeTD, paidTD);
+          var minutesTillTrainTD = $("<td>").attr("scope", "col").text(tMinutesTillTrain);
+          (rows).append(trainNameTD, destinationTD, frequencyTD, nextTrainTD, minutesTillTrainTD);
         
         $("#trains").append(rows);
       }
